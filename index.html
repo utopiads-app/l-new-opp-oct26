@@ -1,0 +1,662 @@
+<title>Lustgarten Q4 Opportunities</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: single reading column (max 1080px), proposal sections stacked; each opportunity opens with its decision, then data, then an interactive planner. Purple is the pancreatic cancer awareness color. */
+:root {
+  --bg: #FBFAFD;
+  --surface: #FFFFFF;
+  --tint: #F1ECF8;
+  --line: #E3DDEC;
+  --fg: #1F1A24;
+  --fg2: #5E5868;
+  --plum: #3B1F5E;
+  --accent: #7048B0;
+  --accent-ink: #FFFFFF;
+  --amber: #A8640A;
+  --amber-mark: #C77A0A;
+  --soft: #C9C2D6;
+  --warn-bg: #FFF4E0;
+  --warn-fg: #7A4A05;
+  --ok-bg: #E8F3EF;
+  --ok-fg: #1F5E4D;
+  --no-bg: #FBEDED;
+  --no-fg: #8A2E2E;
+  --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15111C; --surface: #1D1826; --tint: #261E33; --line: #352C44; --fg: #EEEAF4; --fg2: #ADA5BB;
+    --plum: #D9C9F2; --accent: #A88BE0; --accent-ink: #15111C; --amber: #E3A84F; --amber-mark: #D99A3A; --soft: #4A4058;
+    --warn-bg: #3A2A10; --warn-fg: #F2C77E; --ok-bg: #16302A; --ok-fg: #8FD3BE; --no-bg: #3A1C1C; --no-fg: #F0A8A8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15111C; --surface: #1D1826; --tint: #261E33; --line: #352C44; --fg: #EEEAF4; --fg2: #ADA5BB;
+  --plum: #D9C9F2; --accent: #A88BE0; --accent-ink: #15111C; --amber: #E3A84F; --amber-mark: #D99A3A; --soft: #4A4058;
+  --warn-bg: #3A2A10; --warn-fg: #F2C77E; --ok-bg: #16302A; --ok-fg: #8FD3BE; --no-bg: #3A1C1C; --no-fg: #F0A8A8;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--display); color: var(--plum); text-wrap: balance; margin: 0; font-weight: 600; }
+h1 { font-size: clamp(2.1rem, 5vw, 3.3rem); line-height: 1.05; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); line-height: 1.15; }
+h3 { font-size: 1.25rem; line-height: 1.25; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.muted { color: var(--fg2); }
+.small { font-size: 0.86rem; }
+.num { font-variant-numeric: tabular-nums; }
+section { display: grid; gap: 24px; scroll-margin-top: 16px; }
+.stack { display: grid; gap: 12px; }
+header.hero { display: grid; gap: 18px; }
+.hero .lede { font-size: 1.15rem; color: var(--fg2); max-width: 60ch; }
+nav.jump { display: flex; flex-wrap: wrap; gap: 8px; }
+nav.jump a { text-decoration: none; color: var(--plum); border: 1px solid var(--line); background: var(--surface); padding: 7px 14px; border-radius: 999px; font-weight: 500; font-size: 0.92rem; }
+nav.jump a:hover, nav.jump a:focus-visible { border-color: var(--accent); outline: none; }
+.priority { display: inline-flex; align-items: center; gap: 10px; }
+.priority b { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--body); font-size: 0.95rem; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.stat { background: var(--tint); border-radius: 12px; padding: 18px 18px 16px; display: grid; gap: 4px; align-content: start; }
+.stat .v { font-family: var(--display); font-size: 2.1rem; line-height: 1.05; color: var(--plum); font-variant-numeric: tabular-nums; }
+.stat .l { font-size: 0.9rem; color: var(--fg); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.grid2 > * { min-width: 0; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 14px; min-width: 0; }
+.chartbox { position: relative; height: 280px; }
+.chartbox.tall { height: 320px; }
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg2); font-weight: 600; background: var(--tint); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+tr.total td { font-weight: 600; }
+tr.hl td { background: var(--tint); font-weight: 600; }
+ul.clean { margin: 0; padding-left: 1.15em; display: grid; gap: 8px; max-width: 72ch; }
+ol.steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; counter-reset: s; }
+ol.steps li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; counter-increment: s; }
+ol.steps li::before { content: counter(s); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--tint); color: var(--plum); font-weight: 600; font-size: 0.9rem; }
+ol.steps li > div { min-width: 0; }
+.planner { background: var(--surface); border: 1px solid var(--accent); border-radius: 16px; padding: 22px; display: grid; gap: 18px; }
+.planner .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+.control { display: grid; gap: 6px; }
+.control label { font-weight: 600; font-size: 0.92rem; display: flex; justify-content: space-between; gap: 8px; }
+.control label output { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 600; }
+.control .hint { font-size: 0.8rem; color: var(--fg2); }
+input[type=range] { width: 100%; accent-color: var(--accent); height: 28px; }
+input[type=range]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.results { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.result { border-radius: 12px; background: var(--tint); padding: 14px 16px; display: grid; gap: 2px; }
+.result .v { font-family: var(--display); font-size: 1.75rem; color: var(--plum); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.result .l { font-size: 0.84rem; color: var(--fg2); }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 600; }
+.chip.warn { background: var(--warn-bg); color: var(--warn-fg); }
+.chip.ok { background: var(--ok-bg); color: var(--ok-fg); }
+.presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.presets button { font: inherit; font-size: 0.88rem; font-weight: 500; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+.presets button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.presets button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.note { font-size: 0.84rem; color: var(--fg2); font-style: italic; max-width: 80ch; }
+.phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.phase { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 18px; display: grid; gap: 6px; align-content: start; }
+.phase.on { background: var(--plum); border-color: var(--plum); }
+.phase.on * { color: var(--bg) !important; }
+.phase .k { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.phase .v { font-family: var(--display); font-size: 1.9rem; color: var(--plum); font-variant-numeric: tabular-nums; }
+.doavoid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.doavoid > div { border-radius: 12px; padding: 18px; display: grid; gap: 10px; align-content: start; }
+.do { background: var(--ok-bg); } .do h3 { color: var(--ok-fg); }
+.avoid { background: var(--no-bg); } .avoid h3 { color: var(--no-fg); }
+.timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px 0; padding-top: 8px; }
+.timeline > div { padding: 14px 12px 0 0; position: relative; display: grid; gap: 4px; align-content: start; border-top: 2px solid var(--soft); }
+.timeline > div::before { content: ""; position: absolute; top: -8px; left: 0; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+.timeline > div.peak::before { background: var(--amber-mark); }
+.timeline b { font-family: var(--display); color: var(--plum); font-size: 1.1rem; }
+.divider { border: 0; border-top: 1px solid var(--line); margin: 0; }
+footer { display: grid; gap: 10px; font-size: 0.84rem; color: var(--fg2); }
+footer a, .panel a, p a { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+
+<header class="hero" id="overview">
+  <div class="eyebrow">Lustgarten Foundation · Prepared by Utopiads · October 2026</div>
+  <h1>Q4 2026 paid media opportunities</h1>
+  <p class="lede">Three ways to raise more for pancreatic cancer research this year-end, built on the last 12 months of Lustgarten's Google Ads results. Move the sliders in each section to see how the budget changes the picture.</p>
+  <nav class="jump" aria-label="Sections">
+    <a href="#overview">Overview</a><a href="#google">1. Google Ads budget</a><a href="#chatgpt">2. ChatGPT Ads pilot</a><a href="#meta">3. Meta Ads opportunity</a>
+  </nav>
+</header>
+
+<section aria-labelledby="ov-h">
+  <h2 id="ov-h">The plan at a glance</h2>
+  <div class="stats">
+    <div class="stat"><span class="v">56%</span><span class="l">of the year's donation value came in Q4 2025, from 31% of the year's spend</span></div>
+    <div class="stat"><span class="v">8.35</span><span class="l">December 2025 ROAS, with 621 donations at $32.99 each</span></div>
+    <div class="stat"><span class="v">77%</span><span class="l">of Search Brand impressions missed because of budget</span></div>
+    <div class="stat"><span class="v">62%</span><span class="l">of donations come from New York, New Jersey and Connecticut</span></div>
+  </div>
+  <div class="grid2">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Priority</th><th>Channel</th><th>November</th><th>December</th><th>Total</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Google Ads<br><span class="small muted">Main channel, protects the year-end peak</span></td><td>$10,000</td><td>$20,500</td><td>$30,500</td></tr>
+          <tr><td>2</td><td>ChatGPT Ads<br><span class="small muted">Requested pilot, new donor test</span></td><td>$1,000</td><td>$1,000</td><td>$2,000</td></tr>
+          <tr><td>3</td><td>Meta Ads<br><span class="small muted">Setup in November, retargeting in December</span></td><td>$0</td><td>$1,500</td><td>$1,500</td></tr>
+          <tr class="total"><td></td><td>Total</td><td>$11,000</td><td>$23,000</td><td>$34,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <h3>Budget by channel</h3>
+      <div class="chartbox"><canvas id="c-package" aria-label="Stacked bars of November and December budget by channel" role="img"></canvas></div>
+    </div>
+  </div>
+  <p class="muted">Each channel has its own budget, so ChatGPT Ads and Meta Ads add to Google Ads results rather than drawing from them.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ============================ GOOGLE ============================ -->
+<section id="google" aria-labelledby="g-h">
+  <div class="stack">
+    <span class="priority"><b>1</b><span class="eyebrow">Priority one</span></span>
+    <h2 id="g-h">Google Ads: protect the year-end giving peak</h2>
+    <p>Hold November at $10,000 and increase December to $20,500, the level that produced Lustgarten's strongest month last year. Share the increase across both campaigns and weight it toward Giving Tuesday week and December 26 to 31.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3>Donation value by month</h3>
+      <p class="small muted">October 2025 to October 19, 2026. Q4 2025 highlighted.</p>
+      <div class="chartbox tall"><canvas id="c-value" role="img" aria-label="Monthly donation value bar chart"></canvas></div>
+    </div>
+    <div class="panel">
+      <h3>ROAS by month</h3>
+      <p class="small muted">Donation value per $1 of ad spend. The dashed line is break-even.</p>
+      <div class="chartbox tall"><canvas id="c-roas" role="img" aria-label="Monthly ROAS line chart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Month</th><th>Cost</th><th>Donations</th><th>Cost/Donation</th><th>Conv. Rate</th><th>ROAS</th><th>Donation Value</th><th>Avg Donation</th></tr></thead>
+      <tbody>
+        <tr><td>Oct 2025</td><td>$10,223</td><td>135</td><td>$75.72</td><td>12.4%</td><td>1.70</td><td>$17,347</td><td>$128.49</td></tr>
+        <tr><td>Nov 2025</td><td>$9,319</td><td>186</td><td>$50.10</td><td>18.3%</td><td>6.08</td><td>$56,634</td><td>$304.48</td></tr>
+        <tr><td>Dec 2025</td><td>$20,488</td><td>621</td><td>$32.99</td><td>43.9%</td><td>8.35</td><td>$171,038</td><td>$275.42</td></tr>
+        <tr class="total"><td>Q4 2025</td><td>$40,030</td><td>942</td><td>$42.49</td><td>26.7%</td><td>6.12</td><td>$245,018</td><td>$260.10</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="planner" aria-labelledby="gp-h">
+    <div class="head">
+      <h3 id="gp-h">Q4 budget planner</h3>
+      <span id="g-chip" class="chip ok">Within tested levels</span>
+    </div>
+    <div class="presets" role="group" aria-label="Budget presets">
+      <button type="button" data-nov="10000" data-dec="10000" aria-pressed="false">Maintain</button>
+      <button type="button" data-nov="10000" data-dec="20500" aria-pressed="true">Recommended</button>
+      <button type="button" data-nov="12500" data-dec="25000" aria-pressed="false">Growth</button>
+    </div>
+    <div class="controls">
+      <div class="control">
+        <label for="g-nov">November budget <output id="g-nov-o" for="g-nov">$10,000</output></label>
+        <input id="g-nov" type="range" min="5000" max="15000" step="500" value="10000">
+        <span class="hint">Last November: $9,319</span>
+      </div>
+      <div class="control">
+        <label for="g-dec">December budget <output id="g-dec-o" for="g-dec">$20,500</output></label>
+        <input id="g-dec" type="range" min="10000" max="30000" step="500" value="20500">
+        <span class="hint">Last December: $20,488, the highest level tested</span>
+      </div>
+      <div class="control">
+        <label for="g-eff">Efficiency vs last year <output id="g-eff-o" for="g-eff">75%</output></label>
+        <input id="g-eff" type="range" min="40" max="100" step="5" value="75">
+        <span class="hint">100% repeats last year's ROAS. 50% matches how October 2026 is pacing against October 2025.</span>
+      </div>
+    </div>
+    <div class="results" aria-live="polite">
+      <div class="result"><span class="v" id="g-r-budget">$30,500</span><span class="l">Nov + Dec budget</span></div>
+      <div class="result"><span class="v" id="g-r-value">$173,934</span><span class="l">Illustrative donation value</span></div>
+      <div class="result"><span class="v" id="g-r-range">$116k to $232k</span><span class="l">Range at 50% to 100% efficiency</span></div>
+      <div class="result"><span class="v" id="g-r-don">616</span><span class="l">Illustrative donations</span></div>
+    </div>
+    <div class="chartbox"><canvas id="c-planner" role="img" aria-label="Last year actual donation value compared with the scenario for November and December"></canvas></div>
+    <p class="note">Planning math, not a forecast. It applies last year's November ROAS (6.08) and December ROAS (8.35), scaled by the efficiency setting, and assumes efficiency holds as spend rises. Budgets above last year's December level have not been tested on this account.</p>
+  </div>
+
+  <h3>Room to grow: both campaigns are limited by budget</h3>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Share of spend vs share of donations</h3>
+      <p class="small muted">October 19, 2025 to October 19, 2026</p>
+      <div class="chartbox"><canvas id="c-split" role="img" aria-label="Share of spend and share of donations by campaign"></canvas></div>
+    </div>
+    <div class="stack">
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Campaign</th><th>Cost/Donation</th><th>ROAS</th><th>Impr. lost to budget</th></tr></thead>
+          <tbody>
+            <tr><td>Performance Max</td><td>$34.25</td><td>5.89</td><td>15.9%</td></tr>
+            <tr><td>Search Brand 35+</td><td>$88.11</td><td>2.34</td><td>76.7%</td></tr>
+            <tr class="total"><td>Total</td><td>$61.13</td><td>3.33</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="clean">
+        <li>Performance Max is the most efficient place for additional budget.</li>
+        <li>Search Brand misses 76.7% of eligible impressions because of budget. It competes mostly with the American Cancer Society and Susan G. Komen, so it reaches general cancer charity searches as well as the Lustgarten name.</li>
+        <li>When ads show, they reach the top of the page 74% (Search Brand) and 82% (Performance Max) of the time. Budget, not ad quality, is the main limit.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Competitor</th><th>Campaign</th><th>Their impr. share</th><th>Overlap rate</th><th>Position above rate</th><th>Outranking share</th></tr></thead>
+      <tbody>
+        <tr><td>cancer.org</td><td>Performance Max</td><td>35.04%</td><td>68.62%</td><td>80.14%</td><td>3.73%</td></tr>
+        <tr><td>cancer.org</td><td>Search Brand</td><td>28.22%</td><td>37.56%</td><td>51.36%</td><td>5.31%</td></tr>
+        <tr><td>pancan.org</td><td>Performance Max</td><td>14.68%</td><td>28.52%</td><td>67.02%</td><td>6.71%</td></tr>
+        <tr><td>mskcc.org</td><td>Performance Max</td><td>under 10%</td><td>9.48%</td><td>46.08%</td><td>7.93%</td></tr>
+        <tr><td>stjude.org</td><td>Performance Max</td><td>14.69%</td><td>5.50%</td><td>61.53%</td><td>8.01%</td></tr>
+        <tr><td>komen.org</td><td>Search Brand</td><td>under 10%</td><td>3.86%</td><td>53.68%</td><td>6.44%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Who donates</h3>
+  <div class="stats">
+    <div class="stat"><span class="v">65%</span><span class="l">of donation value from computers. Average gift $232 on desktop vs $158 on mobile.</span></div>
+    <div class="stat"><span class="v">69%</span><span class="l">of Search Brand clicks with a known age come from people 55 and older</span></div>
+    <div class="stat"><span class="v">67%</span><span class="l">of clicks with a known gender are women</span></div>
+    <div class="stat"><span class="v">51%</span><span class="l">of donations come from New York State</span></div>
+  </div>
+
+  <h3>Q4 readiness optimizations</h3>
+  <ol class="steps">
+    <li><div><b>Pre-peak account review.</b> Cost per click rose to $20.90 in October. In early November we review search terms, the 100% target ROAS setting and assets so the December budget goes to the strongest queries.</div></li>
+    <li><div><b>Brand and general search separation.</b> Protect searches for the Lustgarten name at low cost, and budget general cancer research giving searches on their own results.</div></li>
+    <li><div><b>Seasonal messaging.</b> World Pancreatic Cancer Day (November 19), Giving Tuesday (December 1) and year-end assets ready ahead of each date.</div></li>
+    <li><div><b>Mobile donation experience.</b> Mobile converts at 12.9% vs 22.5% on desktop. A page speed and form length review could lift results from the larger mobile audience.</div></li>
+    <li><div><b>Weekly pacing.</b> Budget moved between campaigns based on cost per donation through December.</div></li>
+  </ol>
+</section>
+
+<hr class="divider">
+
+<!-- ============================ CHATGPT ============================ -->
+<section id="chatgpt" aria-labelledby="c-h">
+  <div class="stack">
+    <span class="priority"><b>2</b><span class="eyebrow">Priority two</span></span>
+    <h2 id="c-h">ChatGPT Ads: a 60-day new donor pilot</h2>
+    <p>A focused $1,000 per month pilot for November and December, targeting New York, New Jersey and Connecticut. It reaches people while they research where to give and compare organizations, and is judged against Lustgarten's own Google Ads benchmarks.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><span class="v">$1,000</span><span class="l">per month, about $33 a day. OpenAI's US minimum is $25 a day.</span></div>
+    <div class="stat"><span class="v">60 days</span><span class="l">November and December, through Giving Tuesday and year-end</span></div>
+    <div class="stat"><span class="v">$88.11</span><span class="l">target cost per donation, matching Search Brand</span></div>
+    <div class="stat"><span class="v">Mid Jan</span><span class="l">decision to scale, rebuild or pause</span></div>
+  </div>
+
+  <div class="planner" aria-labelledby="cp-h">
+    <div class="head">
+      <h3 id="cp-h">Pilot planner</h3>
+      <span id="c-chip" class="chip ok">Meets the target</span>
+    </div>
+    <div class="controls">
+      <div class="control">
+        <label for="c-bud">Monthly budget <output id="c-bud-o" for="c-bud">$1,000</output></label>
+        <input id="c-bud" type="range" min="800" max="3000" step="100" value="1000">
+        <span class="hint">Runs for two months. $760 a month is the minimum at $25 a day.</span>
+      </div>
+      <div class="control">
+        <label for="c-cpa">Cost per donation <output id="c-cpa-o" for="c-cpa">$88</output></label>
+        <input id="c-cpa" type="range" min="30" max="160" step="1" value="88">
+        <span class="hint">Benchmarks: Performance Max $34, account $61, Search Brand $88</span>
+      </div>
+    </div>
+    <div class="results" aria-live="polite">
+      <div class="result"><span class="v" id="c-r-total">$2,000</span><span class="l">Pilot spend</span></div>
+      <div class="result"><span class="v" id="c-r-don">23</span><span class="l">Illustrative donations</span></div>
+      <div class="result"><span class="v" id="c-r-val">$4,631</span><span class="l">Illustrative donation value</span></div>
+      <div class="result"><span class="v" id="c-r-roas">2.32</span><span class="l">Illustrative ROAS</span></div>
+    </div>
+    <p class="note">Planning math, not a forecast. Donation value uses Lustgarten's current Google Ads average gift of $203.77.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3>ChatGPT reaches a younger audience</h3>
+      <p class="small muted">US adults who have used ChatGPT, by age (Pew Research Center, February 2026)</p>
+      <div class="chartbox"><canvas id="c-pew" role="img" aria-label="Share of US adults who have used ChatGPT by age group"></canvas></div>
+    </div>
+    <div class="panel">
+      <h3>Lustgarten's current Google Ads donors</h3>
+      <p class="small muted">Search Brand clicks by age, where age is known</p>
+      <div class="chartbox"><canvas id="c-age" role="img" aria-label="Search Brand clicks by age group"></canvas></div>
+    </div>
+  </div>
+  <p>The pilot tests a different donor segment, such as adult children and family members of people affected by pancreatic cancer, rather than duplicating Google Ads. Results are judged on new donor share as well as cost per donation.</p>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3>Why it fits</h3>
+      <ul class="clean">
+        <li>Ads match conversational intent: people comparing organizations or deciding where to give.</li>
+        <li>Context hints guide placement. They are not exact-match keywords.</li>
+        <li>A clear research message ($333 million invested in research) stands out when donors compare charities.</li>
+        <li>Ads are labeled as sponsored and do not influence ChatGPT's answers.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Guardrails</h3>
+      <ul class="clean">
+        <li>No ads in sensitive contexts, including personal health conversations. Ads are not shown to someone describing a diagnosis.</li>
+        <li>Health advertising is reviewed case by case in the US, and nonprofit fundraising is not specifically addressed, so eligibility is confirmed with OpenAI first.</li>
+        <li>Copy stays factual, with no medical claims.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Campaign structure and draft ads</h3>
+  <p class="muted small">Campaign: ChatGPT | Donations | NY NJ CT | Conversions. Draft copy, to be fitted to Ads Manager limits and approved by Lustgarten.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Ad group</th><th>Headline</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>Research Impact</td><td>Fund Pancreatic Cancer Research</td><td>The Lustgarten Foundation has invested over $333M in pancreatic cancer research. Give today.</td></tr>
+        <tr><td>Research Impact</td><td>Support Breakthrough Research</td><td>Help fund high-risk, high-reward pancreatic cancer research. Donate online in minutes.</td></tr>
+        <tr><td>Research Impact</td><td>Empowering Research. Inspiring Hope.</td><td>Your gift supports breakthrough pancreatic cancer research with the Lustgarten Foundation.</td></tr>
+        <tr><td>Year-End Giving</td><td>Give Hope This Giving Tuesday</td><td>Join donors supporting pancreatic cancer research with the Lustgarten Foundation this Giving Tuesday.</td></tr>
+        <tr><td>Year-End Giving</td><td>Make a Year-End Gift for Research</td><td>Close out the year by funding pancreatic cancer research. Gifts are tax deductible as allowed by law.</td></tr>
+        <tr><td>Year-End Giving</td><td>Give in Honor of Someone You Love</td><td>Make a gift in honor or memory of a loved one and support pancreatic cancer research.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>60-day plan</h3>
+  <div class="timeline">
+    <div><b>Oct 26</b><span class="small">Approval, OpenAI eligibility check, tracking setup</span></div>
+    <div><b>Nov 2</b><span class="small">Build, ad review and launch</span></div>
+    <div><b>Nov 19</b><span class="small">World Pancreatic Cancer Day focus</span></div>
+    <div class="peak"><b>Dec 1</b><span class="small">Giving Tuesday: shift to Year-End Giving</span></div>
+    <div class="peak"><b>Dec 26 to 31</b><span class="small">Year-end push</span></div>
+    <div><b>Mid Jan</b><span class="small">Review and decision</span></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============================ META ============================ -->
+<section id="meta" aria-labelledby="m-h">
+  <div class="stack">
+    <span class="priority"><b>3</b><span class="eyebrow">Priority three</span></span>
+    <h2 id="m-h">Meta Ads: retargeting, then video storytelling</h2>
+    <p>Meta keeps Lustgarten in front of people who visited the site but did not give, and reaches new donors through personal stories. The plan is phased so that Meta's health-related policy questions are answered before any spend.</p>
+  </div>
+  <div class="phases">
+    <div class="phase"><span class="k">Phase 0 · November</span><span class="v">$0</span><span>Confirm Meta's health-related classification, set up tracking, audiences and story sourcing.</span></div>
+    <div class="phase on"><span class="k">Phase 1 · December</span><span class="v">$1,500</span><span>Retarget site visitors and engaged audiences through Giving Tuesday and year-end.</span></div>
+    <div class="phase"><span class="k">Phase 2 · Jan and Feb 2027</span><span class="v">$3,000</span><span>Test short video testimonials to reach new donors.</span></div>
+  </div>
+
+  <div class="planner" aria-labelledby="mp-h">
+    <div class="head">
+      <h3 id="mp-h">December retargeting planner</h3>
+      <span id="m-chip" class="chip ok">At or below the Google Ads average</span>
+    </div>
+    <div class="controls">
+      <div class="control">
+        <label for="m-bud">December budget <output id="m-bud-o" for="m-bud">$1,500</output></label>
+        <input id="m-bud" type="range" min="500" max="4000" step="100" value="1500">
+        <span class="hint">About $48 a day at $1,500</span>
+      </div>
+      <div class="control">
+        <label for="m-cpa">Cost per donation <output id="m-cpa-o" for="m-cpa">$61</output></label>
+        <input id="m-cpa" type="range" min="25" max="150" step="1" value="61">
+        <span class="hint">Google Ads average: $61.13</span>
+      </div>
+    </div>
+    <div class="results" aria-live="polite">
+      <div class="result"><span class="v" id="m-r-don">25</span><span class="l">Illustrative donations</span></div>
+      <div class="result"><span class="v" id="m-r-val">$5,011</span><span class="l">Illustrative donation value</span></div>
+      <div class="result"><span class="v" id="m-r-roas">3.34</span><span class="l">Illustrative ROAS</span></div>
+    </div>
+    <p class="note">Planning math, not a forecast. Donation value uses the current Google Ads average gift of $203.77. Retargeting audiences are smaller than search audiences, so results depend on how much extra site traffic Q4 brings.</p>
+  </div>
+
+  <h3>Policy first: health-related rules on Meta</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Policy area</th><th>What it means</th><th>How we plan for it</th></tr></thead>
+      <tbody>
+        <tr><td>Data classification</td><td>Meta may classify the site as health-related, which can limit website audiences, block donation optimization and remove URL parameters.</td><td>Check Events Manager in Phase 0. Prepare a full and a restricted setup.</td></tr>
+        <tr><td>Personal attributes</td><td>Ads cannot imply the viewer has a condition. "Diagnosed with pancreatic cancer?" is not allowed.</td><td>Talk about the cause, the research and other people's stories, never the viewer as a patient.</td></tr>
+        <tr><td>Naming</td><td>Audiences or conversions named after health traits can be disabled.</td><td>Neutral names. Donor lists only with permissions.</td></tr>
+        <tr><td>Health claims</td><td>No unsupported medical claims or promised outcomes.</td><td>Focus on hope, motivation and research funding.</td></tr>
+        <tr><td>Targeting</td><td>No detailed targeting based on health topics.</td><td>Broad or Advantage+ audiences with location and age settings.</td></tr>
+        <tr><td>Social issue ads</td><td>Meta may request authorization and a "Paid for by" disclaimer.</td><td>Fundraising focus. Authorization completed if requested.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3>Phase 1 audiences</h3>
+      <ul class="clean">
+        <li><b>Website visitors</b>, last 30 to 60 days, excluding donors. May be limited by the classification.</li>
+        <li><b>Facebook page and Instagram engagers.</b> Available in every scenario.</li>
+        <li><b>Video viewers.</b> Available in every scenario, and the bridge to Phase 2.</li>
+        <li><b>Existing donor list</b>, as an exclusion or for year-end renewal messages, with permissions.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Phase 2 video concepts</h3>
+      <ul class="clean">
+        <li>A family member on why they give in honor or memory of a loved one.</li>
+        <li>A Lustgarten-funded researcher on what their work aims to achieve.</li>
+        <li>A Walk for Research participant or long-time donor on why they support the cause.</li>
+        <li>A short explainer on how donations fund research.</li>
+      </ul>
+      <p class="small muted">15 to 30 seconds, vertical and square, captioned. Signed releases from everyone featured.</p>
+    </div>
+  </div>
+
+  <div class="doavoid">
+    <div class="do"><h3>Do</h3><ul class="clean"><li>Stories told by the speaker, or in the third person</li><li>Hope, motivation and research funding</li><li>A strong first three seconds and a clear Donate call to action</li></ul></div>
+    <div class="avoid"><h3>Avoid</h3><ul class="clean"><li>Speaking to the viewer as if they or family have cancer</li><li>Claims about cures, survival odds or treatment results</li><li>Graphic medical imagery or hospital scenes</li></ul></div>
+  </div>
+  <p class="small">This builds on the <a href="https://utopiads-app.github.io/l-meta-opp/" target="_blank" rel="noopener">Meta Ads Expansion Opportunity</a> presented earlier.</p>
+</section>
+
+<hr class="divider">
+
+<footer>
+  <p><b>Data sources.</b> Lustgarten Foundation Google Ads account data. Monthly view: October 1, 2025 to October 19, 2026 (October 2026 covers 19 days). Campaign, device, demographic, location and auction insights views: October 19, 2025 to October 19, 2026.</p>
+  <p><b>Planners.</b> All projections on this page are illustrative planning math based on past results. They are not forecasts or guarantees.</p>
+  <p><b>References.</b> <a href="https://openai.com/policies/ad-policies/" target="_blank" rel="noopener">OpenAI Ad Policies</a> · <a href="https://help.openai.com/articles/20001210" target="_blank" rel="noopener">OpenAI: Create campaigns for ChatGPT ads</a> · <a href="https://www.pewresearch.org/internet/2026/06/17/how-opinions-and-use-of-ai-differ-by-age/" target="_blank" rel="noopener">Pew Research Center</a> · <a href="https://www.accelerateddigitalmedia.com/insights/guide-to-social-media-health-ad-restrictions-2026/" target="_blank" rel="noopener">Meta health ad policies overview</a> · <a href="https://lustgarten.org" target="_blank" rel="noopener">lustgarten.org</a></p>
+  <p>Platform policies as of October 20, 2026. Prepared by Utopiads.</p>
+</footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+(function () {
+  const AVG_GIFT = 203.77;
+  const NOV = { roas: 6.0772, cpa: 50.1026, value: 56633.70 };
+  const DEC = { roas: 8.3483, cpa: 32.9917, value: 171037.70 };
+  const months = ["Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26","Sep '26","Oct '26 (1 to 19)"];
+  const value = [17346.70,56633.70,171037.70,48030.50,16680.90,21708.27,21449.40,22627.92,25020.80,19765.95,14036.70,6587.66,5675.20];
+  const roas = [1.70,6.08,8.35,5.08,1.56,2.20,2.16,2.27,2.44,2.03,1.40,0.66,0.91];
+
+  const $ = (id) => document.getElementById(id);
+  const usd = (v) => "$" + Math.round(v).toLocaleString("en-US");
+  const usdk = (v) => "$" + Math.round(v / 1000).toLocaleString("en-US") + "k";
+  const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+  const charts = [];
+  function themeColors() {
+    return { fg: css("--fg"), fg2: css("--fg2"), line: css("--line"), accent: css("--accent"), amber: css("--amber-mark"), soft: css("--soft"), surface: css("--surface") };
+  }
+  function baseOpts(t, extra) {
+    const o = {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: { legend: { display: false, labels: { color: t.fg2, boxWidth: 12, boxHeight: 12, font: { family: "Instrument Sans" } } },
+        tooltip: { backgroundColor: t.surface, titleColor: t.fg, bodyColor: t.fg, borderColor: t.line, borderWidth: 1, padding: 10, displayColors: true } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: t.fg2, font: { family: "Instrument Sans", size: 11 } }, border: { color: t.line } },
+        y: { grid: { color: t.line }, ticks: { color: t.fg2, font: { family: "Instrument Sans", size: 11 } }, border: { display: false } },
+      },
+    };
+    return Object.assign(o, extra || {});
+  }
+
+  let planner;
+  function build() {
+    if (!window.Chart) return;
+    charts.forEach((c) => c.destroy()); charts.length = 0;
+    const t = themeColors();
+
+    // Package stacked bars
+    charts.push(new Chart($("c-package"), {
+      type: "bar",
+      data: { labels: ["November", "December"], datasets: [
+        { label: "Google Ads", data: [10000, 20500], backgroundColor: t.accent, borderColor: t.surface, borderWidth: 2, borderRadius: 4 },
+        { label: "ChatGPT Ads", data: [1000, 1000], backgroundColor: t.amber, borderColor: t.surface, borderWidth: 2, borderRadius: 4 },
+        { label: "Meta Ads", data: [0, 1500], backgroundColor: t.soft, borderColor: t.surface, borderWidth: 2, borderRadius: 4 },
+      ] },
+      options: (() => { const o = baseOpts(t); o.plugins.legend.display = true; o.plugins.legend.position = "bottom";
+        o.scales.x.stacked = true; o.scales.y.stacked = true; o.scales.y.ticks.callback = (v) => usdk(v);
+        o.plugins.tooltip.callbacks = { label: (c) => `${c.dataset.label}: ${usd(c.raw)}` }; return o; })(),
+    }));
+
+    // Monthly value
+    charts.push(new Chart($("c-value"), {
+      type: "bar",
+      data: { labels: months, datasets: [{ label: "Donation value", data: value, backgroundColor: value.map((_, i) => i < 3 ? t.accent : t.soft), borderRadius: 4, maxBarThickness: 34 }] },
+      options: (() => { const o = baseOpts(t); o.scales.y.ticks.callback = (v) => usdk(v);
+        o.plugins.tooltip.callbacks = { label: (c) => `Donation value: ${usd(c.raw)}` }; return o; })(),
+    }));
+
+    // ROAS line with break-even
+    charts.push(new Chart($("c-roas"), {
+      type: "line",
+      data: { labels: months, datasets: [
+        { label: "ROAS", data: roas, borderColor: t.accent, backgroundColor: t.accent, borderWidth: 2, pointRadius: 4, pointHoverRadius: 6, tension: 0.2 },
+        { label: "Break-even", data: months.map(() => 1), borderColor: t.fg2, borderDash: [5, 4], borderWidth: 1, pointRadius: 0, pointHoverRadius: 0 },
+      ] },
+      options: (() => { const o = baseOpts(t); o.interaction = { mode: "index", intersect: false };
+        o.plugins.tooltip.filter = (c) => c.datasetIndex === 0;
+        o.plugins.tooltip.callbacks = { label: (c) => `ROAS: ${c.raw.toFixed(2)}` }; o.scales.y.min = 0; return o; })(),
+    }));
+
+    // Planner chart
+    planner = new Chart($("c-planner"), {
+      type: "bar",
+      data: { labels: ["November", "December"], datasets: [
+        { label: "Last year actual", data: [NOV.value, DEC.value], backgroundColor: t.soft, borderColor: t.surface, borderWidth: 2, borderRadius: 4, maxBarThickness: 60 },
+        { label: "Your scenario", data: [0, 0], backgroundColor: t.accent, borderColor: t.surface, borderWidth: 2, borderRadius: 4, maxBarThickness: 60 },
+      ] },
+      options: (() => { const o = baseOpts(t); o.plugins.legend.display = true; o.plugins.legend.position = "bottom";
+        o.scales.y.ticks.callback = (v) => usdk(v); o.plugins.tooltip.callbacks = { label: (c) => `${c.dataset.label}: ${usd(c.raw)}` }; return o; })(),
+    });
+    charts.push(planner);
+
+    // Campaign split
+    charts.push(new Chart($("c-split"), {
+      type: "bar",
+      data: { labels: ["Performance Max", "Search Brand 35+"], datasets: [
+        { label: "Share of spend", data: [28.1, 71.9], backgroundColor: t.accent, borderColor: t.surface, borderWidth: 2, borderRadius: 4 },
+        { label: "Share of donations", data: [50.1, 49.9], backgroundColor: t.amber, borderColor: t.surface, borderWidth: 2, borderRadius: 4 },
+      ] },
+      options: (() => { const o = baseOpts(t); o.indexAxis = "y"; o.plugins.legend.display = true; o.plugins.legend.position = "bottom";
+        o.scales.x = { grid: { color: t.line }, max: 80, ticks: { color: t.fg2, callback: (v) => v + "%" }, border: { display: false } };
+        o.scales.y = { grid: { display: false }, ticks: { color: t.fg2 }, border: { color: t.line } };
+        o.plugins.tooltip.callbacks = { label: (c) => `${c.dataset.label}: ${c.raw}%` }; return o; })(),
+    }));
+
+    // Pew
+    charts.push(new Chart($("c-pew"), {
+      type: "bar",
+      data: { labels: ["18 to 29", "30 to 49", "50 to 64", "65+"], datasets: [{ label: "Have used ChatGPT", data: [61, 55, 37, 19], backgroundColor: [t.soft, t.soft, t.accent, t.accent], borderRadius: 4, maxBarThickness: 56 }] },
+      options: (() => { const o = baseOpts(t); o.scales.y.max = 70; o.scales.y.ticks.callback = (v) => v + "%";
+        o.plugins.tooltip.callbacks = { label: (c) => `Have used ChatGPT: ${c.raw}%` }; return o; })(),
+    }));
+
+    // Lustgarten age
+    charts.push(new Chart($("c-age"), {
+      type: "bar",
+      data: { labels: ["35 to 44", "45 to 54", "55 to 64", "65+"], datasets: [{ label: "Share of known-age clicks", data: [12.6, 18.6, 23.5, 45.4], backgroundColor: [t.soft, t.soft, t.accent, t.accent], borderRadius: 4, maxBarThickness: 56 }] },
+      options: (() => { const o = baseOpts(t); o.scales.y.max = 50; o.scales.y.ticks.callback = (v) => v + "%";
+        o.plugins.tooltip.callbacks = { label: (c) => `Share of clicks: ${c.raw}%` }; return o; })(),
+    }));
+    updateGoogle();
+  }
+
+  // ---------- Google planner
+  const gNov = $("g-nov"), gDec = $("g-dec"), gEff = $("g-eff");
+  function updateGoogle() {
+    const nov = +gNov.value, dec = +gDec.value, eff = +gEff.value / 100;
+    $("g-nov-o").textContent = usd(nov); $("g-dec-o").textContent = usd(dec); $("g-eff-o").textContent = Math.round(eff * 100) + "%";
+    const vNov = nov * NOV.roas * eff, vDec = dec * DEC.roas * eff;
+    const low = nov * NOV.roas * 0.5 + dec * DEC.roas * 0.5, high = nov * NOV.roas + dec * DEC.roas;
+    const don = nov / (NOV.cpa / eff) + dec / (DEC.cpa / eff);
+    $("g-r-budget").textContent = usd(nov + dec);
+    $("g-r-value").textContent = usd(vNov + vDec);
+    $("g-r-range").textContent = `${usdk(low)} to ${usdk(high)}`;
+    $("g-r-don").textContent = Math.round(don).toLocaleString("en-US");
+    const chip = $("g-chip");
+    if (dec > 20500 || nov > 10500) { chip.className = "chip warn"; chip.textContent = "Beyond last year's tested budget"; }
+    else { chip.className = "chip ok"; chip.textContent = "Within tested levels"; }
+    document.querySelectorAll(".presets button").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.nov === nov && +b.dataset.dec === dec)));
+    if (planner) { planner.data.datasets[1].data = [vNov, vDec]; planner.update("none"); }
+  }
+  [gNov, gDec, gEff].forEach((el) => el.addEventListener("input", updateGoogle));
+  document.querySelectorAll(".presets button").forEach((b) => b.addEventListener("click", () => { gNov.value = b.dataset.nov; gDec.value = b.dataset.dec; updateGoogle(); }));
+
+  // ---------- ChatGPT planner
+  const cBud = $("c-bud"), cCpa = $("c-cpa");
+  function updateChat() {
+    const bud = +cBud.value, cpa = +cCpa.value, total = bud * 2;
+    const don = total / cpa, val = don * AVG_GIFT;
+    $("c-bud-o").textContent = usd(bud); $("c-cpa-o").textContent = usd(cpa);
+    $("c-r-total").textContent = usd(total); $("c-r-don").textContent = Math.round(don).toLocaleString("en-US");
+    $("c-r-val").textContent = usd(val); $("c-r-roas").textContent = (val / total).toFixed(2);
+    const chip = $("c-chip");
+    if (cpa <= 61) { chip.className = "chip ok"; chip.textContent = "Beats the stretch target"; }
+    else if (cpa <= 88) { chip.className = "chip ok"; chip.textContent = "Meets the target"; }
+    else { chip.className = "chip warn"; chip.textContent = "Above the $88 target"; }
+  }
+  [cBud, cCpa].forEach((el) => el.addEventListener("input", updateChat));
+
+  // ---------- Meta planner
+  const mBud = $("m-bud"), mCpa = $("m-cpa");
+  function updateMeta() {
+    const bud = +mBud.value, cpa = +mCpa.value, don = bud / cpa, val = don * AVG_GIFT;
+    $("m-bud-o").textContent = usd(bud); $("m-cpa-o").textContent = usd(cpa);
+    $("m-r-don").textContent = Math.round(don).toLocaleString("en-US"); $("m-r-val").textContent = usd(val); $("m-r-roas").textContent = (val / bud).toFixed(2);
+    const chip = $("m-chip");
+    if (cpa <= 61) { chip.className = "chip ok"; chip.textContent = "At or below the Google Ads average"; }
+    else { chip.className = "chip warn"; chip.textContent = "Above the Google Ads average"; }
+  }
+  [mBud, mCpa].forEach((el) => el.addEventListener("input", updateMeta));
+
+  updateGoogle(); updateChat(); updateMeta();
+  build();
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", build); } catch (e) {}
+  new MutationObserver(build).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+})();
+</script>
